@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subhadra Diwan – QA Engineer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#2A1A4A; --plum-2:#3B2766; --lav:#EFEAFF; --paper:#FBFAFF;
+  --ink:#1E1536; --muted:#625A7A; --line:#DDD5F5;
+  --pass:#12B5A6; --warn:#F5A623; --fail:#E5484D; --violet:#7C5CFF;
+  --surface:#FFFFFF; --chip:#EFEAFF;
+  --display:"Syne","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#150F26; --lav:#1D1536; --ink:#EDE9FA; --muted:#A99FC7; --line:#33284F;
+    --surface:#1D1536; --chip:#2C2150; --plum:#0F0A1E; --plum-2:#241A44;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);line-height:1.08}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* Top bar + hero */
+.top{background:var(--plum);color:#fff}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-family:var(--display);font-weight:800;font-size:1.2rem;text-decoration:none}
+.bar nav{display:flex;gap:26px;font-weight:500;font-size:.95rem}
+.bar nav a{text-decoration:none;opacity:.8}
+.bar nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--pass)}
+
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:center;padding:56px 0 96px}
+.hero h1{font-weight:800;font-size:clamp(2.8rem,6.4vw,5rem);letter-spacing:-.02em}
+.hero .role{margin-top:18px;font-size:1.25rem;color:#C9BDFF;font-weight:500}
+.hero .summary{margin-top:18px;color:#DAD2F5;max-width:46ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{font-weight:600;text-decoration:none;padding:13px 24px;border-radius:999px;border:2px solid var(--pass);transition:transform .15s}
+.btn.primary{background:var(--pass);color:#06241F}
+.btn.ghost{color:#fff}
+.btn:hover{transform:translateY(-2px)}
+
+/* The memorable element: a test run report */
+.run{background:#fff;color:#1E1536;border-radius:18px 18px 28px 6px;overflow:hidden;box-shadow:12px 12px 0 var(--violet)}
+.run-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;background:#F3EFFF;border-bottom:1px solid #DDD5F5;font-family:var(--mono);font-size:.82rem}
+.run-head b{color:#0B8A7E;font-weight:500}
+.run ul{list-style:none}
+.run li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:15px 20px;border-bottom:1px solid #EEE9FB;font-size:.98rem}
+.run li:last-child{border:0}
+.tick{width:22px;height:22px;border-radius:50%;background:var(--pass);display:grid;place-items:center;margin-top:2px}
+.tick svg{width:12px;height:12px}
+.run small{display:block;font-family:var(--mono);font-size:.76rem;color:#6A6285;margin-top:2px}
+
+main{padding:96px 0 0}
+section{margin-bottom:104px}
+section>.wrap>h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-bottom:40px;font-weight:800;display:flex;align-items:center;gap:16px}
+section>.wrap>h2::after{content:"";height:2px;flex:1;background:var(--line)}
+
+/* Experience */
+.job{display:grid;grid-template-columns:300px 1fr;gap:40px;padding:34px 0;border-top:1px solid var(--line)}
+.job:first-of-type{border-top:0;padding-top:0}
+.job-head{position:sticky;top:24px;align-self:start;padding-left:18px;border-left:5px solid var(--c,var(--pass))}
+.job h3{font-size:1.35rem}
+.job .org{margin-top:6px;font-weight:500}
+.job .dates{color:var(--muted);font-family:var(--mono);font-size:.82rem;margin-top:6px}
+.job ul{display:grid;gap:12px;padding-left:1.1em}
+.job li::marker{color:var(--violet)}
+
+/* Skills */
+.srow{display:grid;grid-template-columns:230px 1fr;gap:28px;padding:20px 0;border-top:1px solid var(--line)}
+.srow:first-child{border-top:0}
+.srow h3{font-size:1.05rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.chips li{background:var(--chip);padding:4px 14px;border-radius:999px;font-size:.92rem}
+
+/* Education */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px 24px 24px 6px;padding:28px}
+.card .yrs{font-family:var(--display);font-weight:800;font-size:2rem;color:var(--violet)}
+.card h3{font-size:1.15rem;margin:10px 0 6px}
+.card p{color:var(--muted)}
+
+.cert{display:flex;align-items:center;gap:18px;margin-top:24px;background:var(--lav);border-radius:20px;padding:22px 26px}
+.cert .tick{flex:none;width:32px;height:32px}
+.cert .tick svg{width:16px;height:16px}
+
+/* Footer contact */
+footer{background:var(--plum);color:#fff;padding:80px 0 56px;border-radius:40px 40px 0 0}
+footer h2{font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;max-width:14ch}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.contact{list-style:none;display:grid;gap:14px}
+.contact span{display:block;color:#B7A9E8;font-size:.85rem}
+.contact a{text-decoration:none;border-bottom:1px solid var(--plum-2);word-break:break-all}
+.contact a:hover{border-color:var(--pass)}
+
+/* One page-load moment: report rows run in sequence */
+@keyframes run{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.run li{animation:run .5s ease both;animation-delay:calc(var(--i)*.28s + .3s)}
+@media (prefers-reduced-motion:reduce){.run li{animation:none}html{scroll-behavior:auto}.btn{transition:none}}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding:32px 0 72px}
+  .bar nav{display:none}
+  .job,.srow,.fgrid,.edu{grid-template-columns:1fr}
+  .job{gap:16px}.job-head{position:static}
+  .run{box-shadow:8px 8px 0 var(--violet)}
+  main{padding-top:72px}
+  section{margin-bottom:72px}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#" id="logo"></a>
+      <nav aria-label="Sections">
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <header class="hero">
+      <div>
+        <h1 id="name"></h1>
+        <p class="role" id="role"></p>
+        <p class="summary" id="summary"></p>
+        <div class="btns" id="heroBtns"></div>
+      </div>
+      <aside class="run" aria-label="Career highlights">
+        <div class="run-head"><span id="runTitle"></span><b id="runCount"></b></div>
+        <ul id="runList"></ul>
+      </aside>
+    </header>
+  </div>
+</div>
+
+<main>
+  <section id="experience"><div class="wrap">
+    <h2>Experience</h2>
+    <div id="jobs"></div>
+  </div></section>
+
+  <section id="skills"><div class="wrap">
+    <h2>Skills</h2>
+    <div id="skillRows"></div>
+  </div></section>
+
+  <section id="education"><div class="wrap">
+    <h2>Education and certification</h2>
+    <div class="edu" id="eduList"></div>
+    <div class="cert" id="cert"></div>
+  </div></section>
+</main>
+
+<footer id="contact">
+  <div class="wrap fgrid">
+    <h2>Have a release to test? Let's talk.</h2>
+    <div>
+      <ul class="contact" id="contactList"></ul>
+      <div class="btns" id="ctaBtns"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== EDIT YOUR CONTENT HERE ===== */
+const data = {
+  name: "Subhadra Balwant Diwan",
+  role: "QA Engineer / SDET",
+  summary: "QA engineer with 2+ years of experience in Playwright, TypeScript, REST API testing with Postman, SQL and Agile/Scrum. I build reliable test automation and manage defects so teams ship high-quality software.",
+  highlights: [
+    ["Playwright + TypeScript framework", "Page Object Model, wider regression coverage"],
+    ["30% fewer post-release defects", "Centricity WealthTech, 2025"],
+    ["25% better defect detection", "Rego Digital Solutions, 2023–24"],
+    ["Automation runs on every check-in", "Azure DevOps pipelines"]
+  ],
+  contact: [
+    ["Phone", "+91 8767720189", "tel:+918767720189"],
+    ["Email", "subhadradiwan2314@gmail.com", "mailto:subhadradiwan2314@gmail.com"],
+    ["LinkedIn", "linkedin.com/in/subhadra-d-a1b6841b1", "https://linkedin.com/in/subhadra-d-a1b6841b1"],
+    ["Location", "Pune, India", null]
+  ],
+  experience: [
+    { title: "QA Engineer", org: "Centricity WealthTech, Mumbai (Full-time)", dates: "May 2025 – Present", color: "#12B5A6", points: [
+      "Design and maintain a Playwright TypeScript framework using Page Object Model, expanding regression coverage and cutting manual test time for critical financial workflows.",
+      "Validate REST APIs in Postman: schemas, status codes, payloads, and JWT authentication including token expiry and security scenarios. This catches integration defects before UAT.",
+      "Configure Azure DevOps pipelines that run the automation suite on every check-in, plus Python scripts for test data setup and utilities.",
+      "Use GitHub Copilot to draft scripts faster and generate edge-case scenarios.",
+      "Write MySQL queries for backend data validation, and run manual and mobile tests across Android and iOS devices and OS versions.",
+      "Manage the defect lifecycle in Jira within Agile sprints; contributed to a 30% reduction in post-release defects."]},
+    { title: "QA Engineer", org: "Rego Digital Solutions, Pune (Full-time)", dates: "Sep 2023 – Oct 2024", color: "#7C5CFF", points: [
+      "Developed Playwright TypeScript scripts for enterprise transaction and workflow validation.",
+      "Performed manual and mobile testing: smoke, sanity, functional, regression, integration and database testing.",
+      "Tested APIs in Postman, including authentication token and header validation, and checked backend data consistency with SQL.",
+      "Managed defects in Jira and Trello within Agile/Scrum sprints; structured test scenario design supported a 25% improvement in defect detection rate.",
+      "Took part in Agile/Scrum ceremonies and defect logging and tracking."]}
+  ],
+  skills: {
+    "Automation and testing": ["Playwright", "TypeScript", "Page Object Model", "Functional", "Regression", "Smoke", "Sanity", "Integration", "System", "E2E", "UAT", "Test plan & case design"],
+    "API testing": ["REST API testing", "Postman", "Schema validation", "Payload validation"],
+    "Mobile testing": ["Android", "iOS", "Manual testing", "Device testing", "Cross-device compatibility"],
+    "Languages": ["Python", "TypeScript", "SQL", "HTML", "CSS"],
+    "Database and tools": ["MySQL", "Jira", "Trello"],
+    "CI/CD and DevOps": ["Azure DevOps", "GitHub"],
+    "Methodologies": ["Agile", "Scrum", "SDLC", "STLC", "Defect lifecycle management"],
+    "AI-assisted development": ["GitHub Copilot"]
+  },
+  education: [
+    { years: "2020 – 2023", title: "B.E., Computer Engineering", school: "Sinhgad Institute of Technology and Science, Pune. CGPA 8.45/10" },
+    { years: "2017 – 2020", title: "Diploma, Computer Engineering", school: "Shri Shivaji Polytechnic, Parbhani. 80.86%" }
+  ],
+  certification: "Playwright E2E Test Automation with AI for Beginners (Udemy)",
+  cta: [
+    ["Get in touch", "mailto:subhadradiwan2314@gmail.com", "primary"],
+    ["View LinkedIn profile", "https://linkedin.com/in/subhadra-d-a1b6841b1", "ghost"]
+  ]
+};
+/* ================================== */
+
+const $ = id => document.getElementById(id);
+const el = (tag, attrs = {}, text = "") => {
+  const e = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+  if (text) e.textContent = text;
+  return e;
+};
+const tickSVG = '<svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6.5l2.8 2.8L10 3.5"/></svg>';
+const tick = () => { const t = el("span", { class: "tick" }); t.innerHTML = tickSVG; return t; };
+
+document.title = data.name + " – QA Engineer Portfolio";
+const initials = data.name.split(" ").filter((_, i, a) => i === 0 || i === a.length - 1).map(w => w[0]).join("");
+$("logo").textContent = initials;
+$("name").textContent = data.name;
+$("role").textContent = data.role;
+$("summary").textContent = data.summary;
+
+data.cta.forEach(([label, href, kind]) => {
+  $("heroBtns").append(el("a", { href, class: "btn " + kind }, label));
+  $("ctaBtns").append(el("a", { href, class: "btn " + kind }, label));
+});
+
+$("runTitle").textContent = "qa-run: " + data.name.split(" ")[0].toLowerCase();
+$("runCount").textContent = data.highlights.length + " passed";
+data.highlights.forEach(([t, sub], i) => {
+  const li = el("li"); li.style.setProperty("--i", i);
+  const d = el("div"); d.append(el("span", {}, t), el("small", {}, sub));
+  li.append(tick(), d);
+  $("runList").append(li);
+});
+
+data.experience.forEach(j => {
+  const row = el("article", { class: "job" });
+  const head = el("div", { class: "job-head" });
+  head.style.setProperty("--c", j.color);
+  head.append(el("h3", {}, j.title), el("p", { class: "org" }, j.org), el("p", { class: "dates" }, j.dates));
+  const ul = el("ul");
+  j.points.forEach(p => ul.append(el("li", {}, p)));
+  row.append(head, ul);
+  $("jobs").append(row);
+});
+
+Object.entries(data.skills).forEach(([group, items]) => {
+  const row = el("div", { class: "srow" });
+  const ul = el("ul", { class: "chips" });
+  items.forEach(i => ul.append(el("li", {}, i)));
+  row.append(el("h3", {}, group), ul);
+  $("skillRows").append(row);
+});
+
+data.education.forEach(e => {
+  const c = el("div", { class: "card" });
+  c.append(el("div", { class: "yrs" }, e.years), el("h3", {}, e.title), el("p", {}, e.school));
+  $("eduList").append(c);
+});
+
+$("cert").append(tick(), el("span", {}, data.certification));
+
+data.contact.forEach(([label, text, href]) => {
+  const li = el("li");
+  li.append(el("span", {}, label));
+  li.append(href ? el("a", { href }, text) : document.createTextNode(text));
+  $("contactList").append(li);
+});
+</script>
+</body>
+</html>
